@@ -1,16 +1,16 @@
 import React from 'react';
-import { View, SafeAreaView } from 'react-native';
+import { View } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 
 import ViewImageScreen from './app/screens/ViewImageScreen';
 import WelcomeScreen from './app/screens/WelcomeScreen';
-import AppText from './app/components/AppText';
-import AppButton from './app/components/AppButton';
-import Card from './app/components/Card';
 import ListingDetailsScreen from './app/screens/ListingDetailsScreen';
+import MessagesScreen from './app/screens/MessagesScreen';
+import ListingsScreen from './app/screens/ListingsScreen';
+import AccountScreen from './app/screens/AccountScreen';
 
 export default function App() {
   return (
-    <ListingDetailsScreen />
+    <ListingsScreen />
   );
 }
