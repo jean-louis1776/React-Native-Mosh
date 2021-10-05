@@ -35,28 +35,9 @@ function ListingsScreen() {
                 }
             />
         </Screen>
-
-        // <View style={styles.listingCard}>
-        //     <Card
-        //         title='Red jacket for sale!'
-        //         subTitle='$100'
-        //         image={require('../assets/jacket.jpg')}
-        //     />
-        //     <Card
-        //         title='Couch in great condition'
-        //         subTitle='$1000'
-        //         image={require('../assets/couch.jpg')}
-        //     />
-        // </View>
     );
 }
 const styles = StyleSheet.create({
-    // listingCard: {
-    //     backgroundColor: colors.light,
-    //     padding: 20,
-    //     paddingTop: 50,
-    //     flex: 1
-    // },
     screen: {
         backgroundColor: colors.light,
         padding: 20,
