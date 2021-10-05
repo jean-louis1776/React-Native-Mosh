@@ -3,6 +3,7 @@ import { Image, ImageBackground, StyleSheet, View } from 'react-native';
 
 import AppButton from '../components/AppButton';
 import AppText from '../components/AppText';
+import defaultStyles from '../config/styles';
 
 function WelcomeScreen() {
     return (
@@ -13,7 +14,7 @@ function WelcomeScreen() {
         >
             <View style={styles.logoContainer}>
                 <Image style={styles.logo} source={require('../assets/logo-red.png')} />
-                <AppText style={styles.tagline}>Sell What You Don't Need</AppText>
+                <AppText style={styles.taglineFirst}>Sell<AppText style={styles.taglineSecond}>Buy</AppText></AppText>
             </View>
             <View style={styles.buttonsContainer}>
                 <AppButton title='login' />
@@ -42,10 +43,16 @@ const styles = StyleSheet.create({
         top: 70,
         alignItems: 'center'
     },
-    tagline: {
-        fontSize: 25,
-        fontWeight: '600',
+    taglineFirst: {
+        fontSize: 70,
+        fontWeight: '900',
         paddingVertical: 20,
+        color: defaultStyles.colors.primary
+    },
+    taglineSecond: {
+        fontSize: 70,
+        fontWeight: '600',
+        color: defaultStyles.colors.secondary
     }
 })
 
