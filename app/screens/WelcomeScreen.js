@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, ImageBackground, StyleSheet, View } from 'react-native';
+import { Image, ImageBackground, StyleSheet, View, Platform } from 'react-native';
 
 import AppButton from '../components/AppButton';
 import AppText from '../components/AppText';
@@ -9,7 +9,7 @@ function WelcomeScreen() {
     return (
         <ImageBackground
             style={styles.background}
-            blurRadius={10}
+            blurRadius={Platform.OS === 'android' ? 2 : 6}
             source={require('../assets/background.jpg')}
         >
             <View style={styles.logoContainer}>
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     },
     taglineFirst: {
         fontSize: 70,
-        fontWeight: '900',
+        fontWeight: Platform.OS === 'android' ? 'bold' : '900',
         paddingVertical: 20,
         color: defaultStyles.colors.primary
     },
