@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, TouchableWithoutFeedback, Modal, Button, FlatList } from 'react-native';
+import { View, StyleSheet, TouchableWithoutFeedback, Modal, FlatList } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import AppText from './AppText';
@@ -9,13 +9,13 @@ import PickerItem from './PickerItem';
 
 function AppPicker({
     icon,
-    placeholder,
-    numberOfColumns = 1,
-    PickerItemComponent = PickerItem,
     items,
-    selectedItem,
+    numberOfColumns = 1,
     onSelectItem,
-    width = '100%'
+    PickerItemComponent = PickerItem,
+    placeholder,
+    selectedItem,
+    width = "100%",
 }) {
     const [modalVisible, setModalVisible] = useState(false);
 
@@ -23,30 +23,43 @@ function AppPicker({
         <>
             <TouchableWithoutFeedback onPress={() => setModalVisible(true)}>
                 <View style={[styles.container, { width }]}>
-                    {icon && <MaterialCommunityIcons name={icon} size={23} color={defaultStyles.colors.medium} style={styles.icon} />}
+                    {icon && (
+                        <MaterialCommunityIcons
+                            name={icon}
+                            size={23}
+                            color={defaultStyles.colors.medium}
+                            style={styles.icon}
+                        />
+                    )}
                     {selectedItem ? (
                         <AppText style={styles.text}>{selectedItem.label}</AppText>
                     ) : (
                         <AppText style={styles.placeholder}>{placeholder}</AppText>
                     )}
-                    <MaterialCommunityIcons name='chevron-down' size={23} color={defaultStyles.colors.medium} />
+                    <MaterialCommunityIcons
+                        name='chevron-down'
+                        size={23}
+                        color={defaultStyles.colors.medium}
+                    />
                 </View>
             </TouchableWithoutFeedback>
             <Modal visible={modalVisible} animationType='slide'>
                 <Screen>
                     <View style={styles.closeIcon}>
-                        <MaterialCommunityIcons name='close' color='white' size={25} onPress={() => setModalVisible(false)} />
+                        <MaterialCommunityIcons
+                            name='close'
+                            color='white'
+                            size={25}
+                            onPress={() => setModalVisible(false)} />
                     </View>
                     <FlatList
-                        style={styles.items}
                         data={items}
-                        keyExtractor={item => item.value.toString()}
+                        keyExtractor={(item) => item.value.toString()}
                         numColumns={numberOfColumns}
                         renderItem={({ item }) => (
                             <PickerItemComponent
                                 item={item}
                                 label={item.label}
-                                name={item.iconName}
                                 onPress={() => {
                                     setModalVisible(false);
                                     onSelectItem(item);
