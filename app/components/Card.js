@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, Image } from 'react-native';
 
-import colors from '../config/colors';
+import defaultStyles from '../config/styles';
 import AppText from './AppText';
 
 function Card({ title, subTitle, image }) {
@@ -9,8 +9,8 @@ function Card({ title, subTitle, image }) {
         <View style={styles.card}>
             <Image style={styles.image} source={image} />
             <View style={styles.detailsContainer}>
-                <AppText style={styles.title}>{title}</AppText>
-                <AppText style={styles.subTitle}>{subTitle}</AppText>
+                <AppText style={styles.title} numberOfLines={1}>{title}</AppText>
+                <AppText style={styles.subTitle} numberOfLines={2}>{subTitle}</AppText>
             </View>
         </View>
     );
@@ -18,20 +18,29 @@ function Card({ title, subTitle, image }) {
 
 const styles = StyleSheet.create({
     card: {
+        width: '90%',
+        alignSelf: 'center',
         borderRadius: 15,
-        backgroundColor: colors.white,
+        backgroundColor: defaultStyles.colors.white,
         marginBottom: 20,
-        overflow: 'hidden'
+        marginTop: 10,
+        shadowOffset: { width: 10, height: 10 },
+        shadowOpacity: 1,
+        shadowRadius: 10,
+        shadowColor: defaultStyles.colors.shadowColor,
+        elevation: 10
     },
     detailsContainer: {
         padding: 20
     },
     image: {
         width: '100%',
-        height: 200
+        height: 200,
+        borderTopRightRadius: 15,
+        borderTopLeftRadius: 15,
     },
     subTitle: {
-        color: colors.secondary,
+        color: defaultStyles.colors.secondary,
         fontWeight: 'bold'
     },
     title: {

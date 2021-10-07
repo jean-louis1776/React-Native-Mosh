@@ -3,11 +3,11 @@ import { Image, View, StyleSheet } from 'react-native';
 
 import AppText from '../components/AppText';
 import { ListItem } from '../components/lists';
-import colors from '../config/colors';
+import defaultStyles from '../config/styles';
 
-function ListingDetailsScreen(props) {
+function ListingDetailsScreen() {
     return (
-        <View>
+        <View style={{ backgroundColor: defaultStyles.colors.light, flex: 1 }}>
             <Image style={styles.image} source={require('../assets/jacket.jpg')} />
             <View style={styles.detailsContainer}>
                 <AppText style={styles.title}>Red jacket for sale!</AppText>
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
         height: 300
     },
     price: {
-        color: colors.secondary,
+        color: defaultStyles.colors.secondary,
         fontWeight: 'bold',
         fontSize: 20,
         marginVertical: 10
@@ -43,7 +43,14 @@ const styles = StyleSheet.create({
         fontWeight: '500'
     },
     userContainer: {
-        marginVertical: 40
+        marginVertical: 40,
+        borderRadius: 15,
+        // overflow: 'hidden',
+        shadowOffset: { width: 10, height: 10 },
+        shadowOpacity: 1,
+        shadowRadius: 10,
+        shadowColor: defaultStyles.colors.shadowColor,
+        elevation: 10
     }
 })
 
