@@ -4,8 +4,9 @@ import { Image, ImageBackground, StyleSheet, View, Platform } from 'react-native
 import AppButton from '../components/AppButton';
 import AppText from '../components/AppText';
 import defaultStyles from '../config/styles';
+import routes from '../navigation/routes';
 
-function WelcomeScreen() {
+function WelcomeScreen({ navigation }) {
     return (
         <ImageBackground
             style={styles.background}
@@ -17,8 +18,8 @@ function WelcomeScreen() {
                 <AppText style={styles.taglineFirst}>Sell<AppText style={styles.taglineSecond}>Buy</AppText></AppText>
             </View>
             <View style={styles.buttonsContainer}>
-                <AppButton title='login' />
-                <AppButton title='register' color='secondary' />
+                <AppButton title='login' onPress={() => navigation.navigate(routes.LOGIN)} />
+                <AppButton title='register' color='secondary' onPress={() => navigation.navigate(routes.SIGN_UP)} />
             </View>
         </ImageBackground>
     );
