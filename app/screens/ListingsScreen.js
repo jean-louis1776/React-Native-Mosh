@@ -1,37 +1,41 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FlatList, StyleSheet } from 'react-native';
 
-import colors from '../config/colors';
+import defaultStyles from '../config/styles';
 import routes from '../navigation/routes';
+import listingsApi from '../api/listings';
 import Card from '../components/Card';
 import Screen from '../components/Screen';
-
-const listings = [
-    {
-        id: 1,
-        title: 'Red jacket for sale!',
-        price: 100,
-        image: require('../assets/jacket.jpg')
-    },
-    {
-        id: 2,
-        title: 'Couch in great condition',
-        price: 1000,
-        image: require('../assets/couch.jpg')
-    }
-]
+import AppText from '../components/AppText';
+import AppButton from '../components/AppButton';
+import ActivityIndicator from '../components/ActivityIndicator';
+import useApi from '../hooks/useApi';
 
 function ListingsScreen({ navigation }) {
+    const getListingsApi = useApi(listingsApi.getListings);
+
+    useEffect(() => {
+        getListingsApi.request();
+    }, []);
+
     return (
         <Screen style={styles.screen}>
+            {getListingsApi.error && <>
+                <AppText style={[defaultStyles.text, styles.errorText]}>
+                    Couldn't retrieve the listings.
+                    Please, try later.
+                </AppText>
+                <AppButton title='Retry' onPress={loadListings} />
+            </>}
+            <ActivityIndicator visible={getListingsApi.loading} />
             <FlatList
-                data={listings}
-                keyExtractor={listing => listing.id.toString()}
+                data={getListingsApi.data}
+                keyExtractor={(listing) => listing.id.toString()}
                 renderItem={({ item }) =>
                     <Card
                         title={item.title}
                         subTitle={'$' + item.price}
-                        image={item.image}
+                        imageUrl={item.images[0].url}
                         onPress={() => navigation.navigate(routes.LISTING_DETAILS, item)}
                     />
                 }
@@ -40,8 +44,17 @@ function ListingsScreen({ navigation }) {
     );
 }
 const styles = StyleSheet.create({
+    errorScreen: {
+        padding: 20,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    errorText: {
+        fontSize: 23,
+        textAlign: 'center'
+    },
     screen: {
-        backgroundColor: colors.light,
+        backgroundColor: defaultStyles.colors.light,
         paddingTop: 10
     }
 })
