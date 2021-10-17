@@ -6,9 +6,9 @@
     "orientation": "portrait",
     "icon": "./app/assets/logo-red.png",
     "splash": {
-      "image": "./app/assets/iphonexsmax_splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "image": "./app/assets/splash.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#e63c4b"
     },
     "updates": {
       "fallbackToCacheTimeout": 0

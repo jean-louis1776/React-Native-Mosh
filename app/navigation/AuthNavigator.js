@@ -14,8 +14,8 @@ const AuthNavigator = () => (
             component={WelcomeScreen}
             options={{ headerShown: false }}
         />
-        <Stack.Screen name='Login' component={LoginScreen} />
-        <Stack.Screen name='SignUp' component={RegisterScreen} options={{ title: 'Sign Up' }} />
+        <Stack.Screen name='Login' component={LoginScreen} options={{ headerBackTitle: 'Welcome' }} />
+        <Stack.Screen name='SignUp' component={RegisterScreen} options={{ title: 'Sign Up', headerBackTitle: 'Welcome' }} />
     </Stack.Navigator>
 );
 
